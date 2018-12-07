@@ -1,0 +1,12 @@
+#linux
+*~
+*.bak
+
+#geany
+*.geany
+
+#vscode
+.vscode
+
+#haxeflixel
+export/*
