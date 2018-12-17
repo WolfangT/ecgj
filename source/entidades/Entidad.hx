@@ -50,7 +50,9 @@ class Entidad extends FlxSprite {
 	public function saltar():Void {
 		if (isTouching(FlxObject.FLOOR) || isTouching(FlxObject.RIGHT) || isTouching(FlxObject.LEFT)) {
 			var jA:Float = 0;
-			if (isTouching(FlxObject.RIGHT))
+			if (isTouching(FlxObject.FLOOR))
+				jA = 0;
+			else if (isTouching(FlxObject.RIGHT))
 				jA = -45;
 			else if (isTouching(FlxObject.LEFT))
 				jA = 45;
