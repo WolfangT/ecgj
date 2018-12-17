@@ -21,6 +21,7 @@ class Entidad extends FlxSprite {
 	// salto
 	public var cargandoSalto:Bool = false;
 	public var cargaSalto:Float = 0;
+	public var saltando:Bool = false;
 	public var velocidadCargaSalto:Float = 2;
 	public var FuerzaSalto:Int = 600;
 	public var empesandoCargaSalto:Bool = false;
@@ -42,25 +43,24 @@ class Entidad extends FlxSprite {
 		acceleration.addPoint(mov);
 	}
 
-	public function wallJumpReflect():Void {
-		velocity.y = -FuerzaSalto / 2;
-		if (isTouching(FlxObject.RIGHT)) {
-			velocity.x = -maxVelocity.x;
-		} else if (isTouching(FlxObject.LEFT)) {
-			velocity.x = maxVelocity.x;
-		}
-	}
-
 	public function cargarSalto():Void {
 		cargandoSalto = true;
 	}
 
 	public function saltar():Void {
-		var fuerza:Float = cargaSalto * FuerzaSalto;
-		var mov:FlxPoint = new FlxPoint(0, fuerza);
-		// mov.rotate(new FlxPoint(), 0);
-		velocity.subtractPoint(mov);
+		if (isTouching(FlxObject.FLOOR) || isTouching(FlxObject.RIGHT) || isTouching(FlxObject.LEFT)) {
+			var jA:Float = 0;
+			if (isTouching(FlxObject.RIGHT))
+				jA = -45;
+			else if (isTouching(FlxObject.LEFT))
+				jA = 45;
+			var fuerza:Float = cargaSalto * FuerzaSalto;
+			var mov:FlxPoint = new FlxPoint(0, fuerza);
+			mov.rotate(new FlxPoint(), jA);
+			velocity.subtractPoint(mov);
+		}
 		cargandoSalto = false;
+		saltando = true;
 		empesandoCargaSalto = true;
 	}
 
@@ -88,6 +88,8 @@ class Entidad extends FlxSprite {
 							cargaSalto = 1;
 					}
 				}
+				if (justTouched(FlxObject.FLOOR))
+					saltando = false;
 			} else {
 				// Reducir mareo
 				mareado -= elapsed * ResistenciaMareo;

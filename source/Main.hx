@@ -19,15 +19,7 @@ class Main extends Sprite {
 		// debugging
 		FlxG.debugger.addTrackerProfile(new TrackerProfile(EnemigoBasico, ["_dx", "_dy", "_mA", "_mD"], []));
 		FlxG.debugger.addTrackerProfile(new TrackerProfile(Entidad, [
-			"name",
-			"acceleration",
-			"velocity",
-			"x",
-			"y",
-			"touching",
-			"mareado",
-			"cargandoSalto",
-			"cargaSalto"
+			"name", "acceleration", "velocity", "x", "y", "touching", "mareado", "cargandoSalto", "cargaSalto", "saltando"
 		], []));
 	}
 }
