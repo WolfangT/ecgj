@@ -7,6 +7,7 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.tile.FlxTilemap;
+import flixel.system.FlxSound;
 import flixel.addons.tile.FlxTilemapExt;
 import flixel.addons.editors.tiled.TiledImageLayer;
 import flixel.addons.editors.tiled.TiledImageTile;
@@ -303,7 +304,8 @@ class TiledLevel extends TiledMap {
 		var collectible:Collectible = cast coll;
 		if (entity.activo) {
 			entity.gifts += 1;
-			collectible.collected();
+			var sound:FlxSound = collectible.collected();
+			sound.play();
 		}
 	}
 

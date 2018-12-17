@@ -45,6 +45,4 @@ class Reg {
 	 * Especially useful for setting up multiple save slots.
 	 */
 	public static var saves:Array<FlxSave> = [];
-	// Sounds
-	public static var giftSounds:Array<FlxSound> = [];
 }

@@ -27,7 +27,7 @@ class PlayState extends FlxState {
 		add(level.masterGroup);
 		bgColor = level.backgroundColor;
 		if (level.song != null)
-			FlxG.sound.playMusic(FlxAssets.getSound("assets/music/" + level.song), 1, true);
+			FlxG.sound.playMusic(FlxAssets.getSound("assets/music/" + level.song), 0.1, true);
 		// load hud
 		hud = new HUD();
 		add(hud);

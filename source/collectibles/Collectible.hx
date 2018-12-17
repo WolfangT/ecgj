@@ -28,10 +28,10 @@ class Collectible extends FlxSprite {
 		acceleration.addPoint(mov);
 	}
 
-	public function collected():Void {
+	public function collected():FlxSound {
 		var random:FlxRandom = new FlxRandom();
-		var index:Int = random.int(0, collectedSounds.length);
-		collectedSounds[index].play();
+		var sound:FlxSound = random.getObject(collectedSounds);
 		kill();
+		return sound;
 	}
 }
