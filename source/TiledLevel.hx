@@ -108,12 +108,12 @@ class TiledLevel extends TiledMap {
 		var tileLayer:TiledTileLayer = cast layer;
 
 		// busca el tileset usado por el layer
-		var tileSheetName:String = tileLayer.properties.get("tilesheet");
+		var tileSheetName:String = tileLayer.properties.get("tileset");
 		if (tileSheetName == null)
 			throw "'tileset' property not defined for the '" + tileLayer.name + "' layer. Please add the property to the layer.";
 		var tileSet:TiledTileSet = tilesets[tileSheetName];
-		// if (tileSet == null)
-		// 	throw "Tileset '" + tileSheetName + " not found. Did you misspell the 'tilesheet' property in " + tileLayer.name + "' layer?";
+		if (tileSet == null)
+			throw "Tileset '" + tileSheetName + " not found. Did you misspell the 'tilesheet' property in " + tileLayer.name + "' layer?";
 		var imagePath = new Path(tileSet.imageSource);
 		var processedPath = c_PATH_LEVEL_TILESHEETS + imagePath.file + "." + imagePath.ext;
 
@@ -138,6 +138,8 @@ class TiledLevel extends TiledMap {
 		var tempSt:Array<Int> = [];
 		var tempST:Array<Int> = [];
 		for (tile in tileSet.tileProps) {
+			if (tile == null)
+				continue;
 			var _id:Int = tileSet.toGid(tile.tileID);
 			if (tile.contains("cloud"))
 				tempC.push(_id);
