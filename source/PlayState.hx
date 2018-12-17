@@ -18,6 +18,7 @@ class PlayState extends FlxState {
 	 */
 	override public function create():Void {
 		super.create();
+<<<<<<< HEAD
 		// detalles
 		// FlxG.mouse.visible = false;
 		FlxG.camera.setSize(FlxG.width, FlxG.height);
@@ -33,6 +34,11 @@ class PlayState extends FlxState {
 			var entity:Entidad = cast ent;
 			entity.nacer();
 		}
+=======
+		var text = new flixel.text.FlxText(0, 0, 0, "im so fresh you can suck my nuts", 64);
+		text.screenCenter();
+		add(text);
+>>>>>>> 7c8494e16cd4fb347533d3a85253f181496fdeea
 	}
 
 	/**
