@@ -1,7 +1,9 @@
 package;
 
 import flixel.util.FlxSave;
-import entidades.Entidad;
+import flixel.FlxG;
+import flixel.system.FlxSound;
+import entities.Entity;
 
 /**
  * Handy, pre-built Registry class that can be used to store
@@ -12,7 +14,7 @@ class Reg {
 	/**
 	 * lugar donde se guarda la informacion del jugador entre states
 	 */
-	public static var player:Entidad = null;
+	public static var player:Entity = null;
 
 	/**
 	 * Generic levels Array that can be used for cross-state stuff.
@@ -43,4 +45,6 @@ class Reg {
 	 * Especially useful for setting up multiple save slots.
 	 */
 	public static var saves:Array<FlxSave> = [];
+	// Sounds
+	public static var giftSounds:Array<FlxSound> = [];
 }

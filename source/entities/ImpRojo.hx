@@ -1,8 +1,8 @@
-package entidades;
+package entities;
 
 import ias.EnemigoBasico;
 
-class ImpRojo extends Entidad {
+class ImpRojo extends Entity {
 	override public function new(name:String, x:Float = 0, y:Float = 0) {
 		super(name, x, y);
 		loadGraphic(AssetPaths.Imp_Rojo__png, true, 64, 64);

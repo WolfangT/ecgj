@@ -18,9 +18,11 @@ import flixel.addons.editors.tiled.TiledTileLayer;
 import flixel.addons.editors.tiled.TiledTileSet;
 import flixel.math.FlxPoint;
 import flixel.graphics.frames.FlxTileFrames;
-import entidades.Entidad;
-import entidades.Santa;
-import entidades.ImpRojo;
+import entities.Entity;
+import entities.Santa;
+import entities.ImpRojo;
+import collectibles.Collectible;
+import collectibles.Gift;
 
 /**
  * @author Samuel Batista
@@ -43,6 +45,7 @@ class TiledLevel extends TiledMap {
 	public var objectsLayer:FlxGroup;
 	public var mobileObjects:FlxGroup;
 	public var staticObjects:FlxGroup;
+	public var collectiblesObjects:FlxGroup;
 	public var entityLayer:FlxGroup;
 	// Sprites of images layers
 	public var imagesLayer:FlxGroup;
@@ -62,6 +65,7 @@ class TiledLevel extends TiledMap {
 		staticObjects = new FlxGroup();
 		frontLayer = new FlxGroup();
 		backgroundLayer = new FlxGroup();
+		collectiblesObjects = new FlxGroup();
 		collidableTileLayers = new Array<FlxTilemap>();
 		// set bounds
 		FlxG.camera.setScrollBoundsRect(0, 0, fullWidth, fullHeight, true);
@@ -207,7 +211,7 @@ class TiledLevel extends TiledMap {
 			if (layer.name == "images")
 				loadImageObject(object);
 			// objects layer
-			else if (layer.name == "entities")
+			else if (layer.name == "entities" || layer.name == "collectibles")
 				loadEntity(object, objectLayer);
 			// objects layer
 			else if (layer.name == "objetives")
@@ -242,32 +246,33 @@ class TiledLevel extends TiledMap {
 		if (object.gid != -1)
 			y -= g.map.getGidOwner(object.gid).tileHeight;
 		// determinar tipo de objeto
-		switch (object.type) {
-			case "player":
-				Reg.player.name = object.name;
-				Reg.player.setPosition(x, y);
-				sprite = Reg.player;
-			default:
-				// resolver dinamicamente la clase del sprite
-				// Crear dinamicamente el objeto en la posicion dada
-				var clase:Dynamic = Type.resolveClass("entidades." + object.type);
-				if (clase == null)
-					throw "Could not find class of type " + object.type;
-				sprite = Type.createInstance(clase, [object.name, object.x, object.y]);
-				if (clase == Santa) {
-					var s:Santa = cast sprite;
-					FlxG.debugger.track(s.ia);
-				}
+		if (object.type == "player") {
+			Reg.player.name = object.name;
+			Reg.player.setPosition(x, y);
+			sprite = Reg.player;
+		} else {
+			// resolver dinamicamente la clase del sprite
+			var clase:Dynamic = null;
+			if (g.name == "entities")
+				clase = Type.resolveClass("entities." + object.type);
+			else if (g.name == "collectibles")
+				clase = Type.resolveClass("collectibles." + object.type);
+			if (clase == null)
+				throw "Could not find class of type " + object.type;
+			sprite = Type.createInstance(clase, [object.name, object.x, object.y]);
 		}
+
 		// Determinar si el objeto es movil o estatico
 		if (object.properties.contains("static")) {
 			sprite.immovable = true;
 			staticObjects.add(sprite);
 		} else
 			mobileObjects.add(sprite);
-		entityLayer.add(sprite);
+		if (g.name == "entities")
+			entityLayer.add(sprite);
+		else if (g.name == "collectibles")
+			collectiblesObjects.add(sprite);
 		objectsLayer.add(sprite);
-		FlxG.debugger.track(sprite);
 	}
 
 	private function loadObjetives(object:TiledObject, g:TiledObjectLayer) {}
@@ -288,8 +293,18 @@ class TiledLevel extends TiledMap {
 			var object:FlxObject = cast object;
 			collideWithLevel(object);
 		}
+		FlxG.overlap(entityLayer, collectiblesObjects, collectObject);
 		FlxG.collide(mobileObjects, mobileObjects);
 		FlxG.collide(staticObjects, mobileObjects);
+	}
+
+	public function collectObject(ent:FlxObject, coll:FlxObject):Void {
+		var entity:Entity = cast ent;
+		var collectible:Collectible = cast coll;
+		if (entity.activo) {
+			entity.gifts += 1;
+			collectible.collected();
+		}
 	}
 
 	public function applyGravity():Void {
@@ -304,7 +319,7 @@ class TiledLevel extends TiledMap {
 
 	public function applyFriction():Void {
 		for (sprite in mobileObjects) {
-			var Sprite:Entidad = cast sprite;
+			var Sprite:Entity = cast sprite;
 			if (Sprite.velocity.x != 0) {
 				if (Sprite.isTouching(FlxObject.FLOOR))
 					Sprite.velocity.x -= Sprite.velocity.x * friction;

@@ -1,9 +1,9 @@
-package entidades;
+package entities;
 
-import entidades.Entidad;
+import entities.Entity;
 import ias.*;
 
-class ImpNegro extends Entidad {
+class ImpNegro extends Entity {
 	override public function new(Name:String, X:Float = 0, Y:Float = 0) {
 		super(Name, X, Y);
 		loadGraphic(AssetPaths.Imp_Negro__png, true, 32, 32);

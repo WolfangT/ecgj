@@ -2,7 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxState;
-import entidades.Entidad;
+import entities.Entity;
 import flixel.system.FlxAssets;
 import flixel.FlxCamera;
 
@@ -12,6 +12,7 @@ import flixel.FlxCamera;
 class PlayState extends FlxState {
 	public var level:TiledLevel;
 	public var tmx_file:String;
+	public var hud:HUD;
 
 	/**
 	 * Function that is called up when to state is created to set it up.
@@ -27,10 +28,14 @@ class PlayState extends FlxState {
 		bgColor = level.backgroundColor;
 		if (level.song != null)
 			FlxG.sound.playMusic(FlxAssets.getSound("assets/music/" + level.song), 1, true);
+		// load hud
+		hud = new HUD();
+		add(hud);
 		// iniciar
+		Reg.player.gifts = 3;
 		FlxG.camera.follow(Reg.player, FlxCameraFollowStyle.PLATFORMER, 1);
 		for (ent in level.entityLayer) {
-			var entity:Entidad = cast ent;
+			var entity:Entity = cast ent;
 			entity.nacer();
 		}
 	}
@@ -40,6 +45,8 @@ class PlayState extends FlxState {
 	 */
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
+		hud.updateHUD(Reg.player.gifts);
+		hud.update(elapsed);
 		level.applyGravity();
 		level.collideObjects();
 		if (Reg.player.y > level.fullHeight)

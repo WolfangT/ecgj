@@ -1,15 +1,15 @@
 package ias;
 
-import entidades.Entidad;
+import entities.Entity;
 
 /**
  * Clase base para la IAs que simplemente guarda una referencia al
  * objeto que controla
 **/
 class IA {
-	public var entidad:Entidad;
+	public var entidad:Entity;
 
-	public function new(e:Entidad):Void {
+	public function new(e:Entity):Void {
 		entidad = e;
 	}
 

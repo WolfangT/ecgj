@@ -1,8 +1,8 @@
-package entidades;
+package entities;
 
 import ias.EnemigoBasico;
 
-class Santa extends Entidad {
+class Santa extends Entity {
 	override public function new(name:String, x:Float = 0, y:Float = 0) {
 		super(name, x, y);
 		loadGraphic(AssetPaths.santa__png, true, 16, 16);

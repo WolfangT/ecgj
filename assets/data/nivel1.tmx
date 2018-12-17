@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="150" height="28" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#000012" nextlayerid="7" nextobjectid="2">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="150" height="28" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#000012" nextlayerid="8" nextobjectid="9">
  <tileset firstgid="1" source="Desierto.tsx"/>
  <tileset firstgid="25" source="Present.tsx"/>
  <layer id="4" name="fondo" width="150" height="28">
@@ -14,6 +14,35 @@
  </layer>
  <objectgroup id="6" name="entities">
   <object id="1" name="jugador" type="player" gid="71" x="127" y="423" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="7" name="collectibles">
+  <object id="2" type="Gift" gid="87" x="320" y="484" width="32" height="32"/>
+  <object id="3" type="Gift" gid="87" x="406" y="451" width="32" height="32"/>
+  <object id="4" type="Gift" gid="87" x="549" y="380" width="32" height="32">
+   <properties>
+    <property name="static" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="5" type="Gift" gid="87" x="465" y="411" width="32" height="32">
+   <properties>
+    <property name="static" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="6" type="Gift" gid="87" x="630" y="383" width="32" height="32">
+   <properties>
+    <property name="static" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="7" type="Gift" gid="87" x="697" y="431" width="32" height="32">
+   <properties>
+    <property name="static" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="8" type="Gift" gid="87" x="734" y="453" width="32" height="32">
+   <properties>
+    <property name="static" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="3" name="frente" width="150" height="28">
   <properties>

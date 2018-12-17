@@ -1,4 +1,4 @@
-package entidades;
+package entities;
 
 import flixel.FlxSprite;
 import flixel.FlxObject;
@@ -11,7 +11,7 @@ import ias.IA;
  * esto incluye a los personajes jugables, enemigos y trampas,
  * es uno de 2 componentes, el otro es la IA
 **/
-class Entidad extends FlxSprite {
+class Entity extends FlxSprite {
 	public var name:String;
 	public var ia:IA;
 	public var activo:Bool = false;
@@ -25,8 +25,10 @@ class Entidad extends FlxSprite {
 	public var velocidadCargaSalto:Float = 2;
 	public var FuerzaSalto:Int = 600;
 	public var empesandoCargaSalto:Bool = false;
+	// game
+	public var gifts:Int;
 
-	override public function new(name:String, x:Float, y:Float, velocidad:Int = 300):Void {
+	override public function new(name:String, x:Float, y:Float, velocidad:Int = 300) {
 		this.name = name;
 		super(x, y);
 		maxVelocity.x = velocidad;
@@ -50,9 +52,10 @@ class Entidad extends FlxSprite {
 	public function saltar():Void {
 		if (isTouching(FlxObject.FLOOR) || isTouching(FlxObject.RIGHT) || isTouching(FlxObject.LEFT)) {
 			var jA:Float = 0;
-			if (isTouching(FlxObject.FLOOR))
-				jA = 0;
-			else if (isTouching(FlxObject.RIGHT))
+			// if (isTouching(FlxObject.FLOOR))
+			// 	jA = 0;
+			// else
+			if (isTouching(FlxObject.RIGHT))
 				jA = -45;
 			else if (isTouching(FlxObject.LEFT))
 				jA = 45;
