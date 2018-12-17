@@ -172,7 +172,7 @@ class TiledLevel extends TiledMap {
 			tilemap.setTileProperties(tile, tilemap.getTileCollisions(tile), wallJump);
 		tilemap.setSlopes(tempNW, tempNE, tempSW, tempSE);
 		tilemap.setGentle(tempGT, tempGt);
-		tilemap.setSteep(tempST, tempST);
+		tilemap.setSteep(tempST, tempSt);
 
 		// add properties for the layer
 		if (layer.properties.contains("parallax")) {
@@ -323,7 +323,7 @@ class TiledLevel extends TiledMap {
 	}
 
 	function wallJump(Tile:FlxObject, Object:FlxObject):Void {
-		Object.velocity.y *= 0.9;
+		Object.velocity.y *= 0.75;
 		Object.touching |= FlxObject.FLOOR | FlxObject.CEILING;
 	}
 }

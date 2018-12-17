@@ -34,7 +34,6 @@ class Jugador extends IA {
 			entidad.cargarSalto();
 		if (FlxG.keys.anyJustReleased([SPACE])) {
 			entidad.saltar();
-			entidad.wallJumpReflect();
 		}
 	}
 }

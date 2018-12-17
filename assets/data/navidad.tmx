@@ -18,7 +18,7 @@
  </layer>
  <objectgroup id="2" name="entities">
   <object id="1" name="wolfang" type="player" gid="47" x="506" y="1146" width="32" height="32"/>
-  <object id="2" name="Santa" type="Santa" gid="106" x="1033.67" y="187.667" width="16" height="16"/>
+  <object id="2" name="Santa" type="Santa" gid="106" x="1400.34" y="919.667" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="5" name="objetives">
   <object id="3" x="4062.77" y="1396.99" width="100.835" height="109.516"/>

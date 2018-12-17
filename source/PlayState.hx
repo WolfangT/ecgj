@@ -22,7 +22,7 @@ class PlayState extends FlxState {
 		// FlxG.mouse.visible = false;
 		FlxG.camera.setSize(FlxG.width, FlxG.height);
 		// load level
-		level = new TiledLevel(AssetPaths.navidad__tmx);
+		level = new TiledLevel(tmx_file);
 		add(level.masterGroup);
 		bgColor = level.backgroundColor;
 		if (level.song != null)
