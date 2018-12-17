@@ -2,7 +2,7 @@ package;
 
 class Nivel extends PlayState {
 	override public function create():Void {
-		tmx_file = AssetPaths.navidad__tmx;
+		tmx_file = AssetPaths.nivel1__tmx;
 		super.create();
 	}
 }
