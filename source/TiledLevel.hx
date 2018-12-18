@@ -3,6 +3,7 @@ package;
 import Math;
 import haxe.io.Path;
 import flixel.FlxG;
+import flixel.text.FlxText;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
@@ -221,9 +222,10 @@ class TiledLevel extends TiledMap {
 			// objects layer
 			else if (layer.name == "entities" || layer.name == "collectibles")
 				loadEntity(object, objectLayer);
-			// objects layer
 			else if (layer.name == "objetives")
 				loadObjetives(object, objectLayer);
+			else if (layer.name == "text")
+				loadText(object, objectLayer);
 		}
 	}
 
@@ -285,6 +287,11 @@ class TiledLevel extends TiledMap {
 		else if (g.name == "collectibles")
 			collectiblesObjects.add(sprite);
 		objectsLayer.add(sprite);
+	}
+
+	private function loadText(object:TiledObject, g:TiledObjectLayer) {
+		var text:FlxText = new FlxText(object.x, object.y, object.width, object.name, Std.int(object.height / 3));
+		objectsLayer.add(text);
 	}
 
 	private function loadObjetives(object:TiledObject, g:TiledObjectLayer) {}

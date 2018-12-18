@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="300" height="38" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#000012" nextlayerid="14" nextobjectid="94">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="300" height="38" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#000012" nextlayerid="15" nextobjectid="98">
  <properties>
   <property name="song" value="Harmony_Dark"/>
  </properties>
@@ -36,6 +36,20 @@
   <object id="54" name="Santa" type="Santa" gid="27" x="5736" y="444" width="32" height="32"/>
   <object id="55" name="Santa" type="Santa" gid="27" x="6026" y="666" width="32" height="32"/>
   <object id="66" name="jugador" type="player" gid="71" x="82" y="730" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="14" name="text">
+  <object id="94" name="Keep SPACE pressed to charge jump" type="Text" x="42.8333" y="631.417" width="268.333" height="32.3333">
+   <text wrap="1" color="#ffffff">Keep SPACE pressed to charge jump</text>
+  </object>
+  <object id="95" name="Collect 4 gift to gain a Beachball. Then press SHIFT to launch" type="Text" x="756.5" y="550.5" width="248.333" height="46.3333">
+   <text wrap="1" color="#ffffff">Collect 4 gift to gain a Beachball. Then press SHIFT to launch</text>
+  </object>
+  <object id="96" name="You can wall jump from white walls" type="Text" x="1695.17" y="628.5" width="268.333" height="32.3333">
+   <text wrap="1" color="#ffffff">You can wall jump from white walls</text>
+  </object>
+  <object id="97" name="Congratulations, now Santa's secret gift cache is all your!!!" type="Text" x="6666.83" y="485.833" width="275.333" height="45.3333">
+   <text wrap="1" color="#ffffff" halign="center">Congratulations, now Santa's secret gift cache is all your!!!</text>
+  </object>
  </objectgroup>
  <objectgroup id="7" name="collectibles">
   <properties>
