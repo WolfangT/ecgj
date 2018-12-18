@@ -34,7 +34,7 @@ class Entity extends FlxSprite {
 	public var gifts:Int;
 	public var balls:Int;
 	public var collected_till_ball:Int;
-	public var needed_for_ball:Int = 5;
+	public var needed_for_ball:Int = 4;
 	public var hurtSounds:Array<FlxSound>;
 
 	override public function new(name:String, x:Float, y:Float, velocidad:Int = 300) {
@@ -90,7 +90,7 @@ class Entity extends FlxSprite {
 	}
 
 	public function collectCollectible(collectible:Collectible):Void {
-		if (collectible.name == "gift") {
+		if (collectible.name == "Gift") {
 			gifts += 1;
 			collected_till_ball += 1;
 			if (collected_till_ball >= needed_for_ball) {

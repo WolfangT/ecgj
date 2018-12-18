@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.ui.FlxButton;
+import flixel.text.FlxText;
 import flixel.util.FlxDestroyUtil;
 
 /**
@@ -10,6 +11,7 @@ import flixel.util.FlxDestroyUtil;
  */
 class MenuState extends FlxState {
 	private var _btnPlay:FlxButton;
+	private var _name:FlxText;
 
 	/**
 	 * Function that is called up when to state is created to set it up.
@@ -20,8 +22,10 @@ class MenuState extends FlxState {
 		FlxG.debugger.visible = true;
 		FlxG.debugger.drawDebug = true;
 		// Custom
+		_name = new FlxText(FlxG.width * 0.25, FlxG.height * 0.25, FlxG.width * 0.5, "The great Nort Pole holiday bulglary of 82!", 25);
 		_btnPlay = new FlxButton(0, 0, "Play", clickPlay);
 		_btnPlay.screenCenter();
+		add(_name);
 		add(_btnPlay);
 		// Estadar
 		super.create();
