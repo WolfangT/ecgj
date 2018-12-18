@@ -18,7 +18,6 @@
  <objectgroup id="6" name="entities">
   <object id="10" name="Santa" type="Santa" gid="27" x="296" y="760" width="32" height="32"/>
   <object id="29" name="Santa" type="Santa" gid="27" x="920" y="758" width="32" height="32"/>
-  <object id="30" name="Santa" type="Santa" gid="27" x="1476" y="664" width="32" height="32"/>
   <object id="31" name="Santa" type="Santa" gid="27" x="1870" y="814" width="32" height="32"/>
   <object id="32" name="Santa" type="Santa" gid="27" x="2327.15" y="774.576" width="32" height="32"/>
   <object id="33" name="Santa" type="Santa" gid="27" x="3228" y="944" width="32" height="32"/>
