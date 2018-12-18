@@ -10,10 +10,10 @@ class Jugador extends IA {
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 		// Obtener direcciones
-		var _up:Bool = FlxG.keys.anyPressed([UP]);
-		var _down:Bool = FlxG.keys.anyPressed([DOWN]);
-		var _left:Bool = FlxG.keys.anyPressed([LEFT]);
-		var _right:Bool = FlxG.keys.anyPressed([RIGHT]);
+		var _up:Bool = FlxG.keys.anyPressed([UP, W]);
+		var _down:Bool = FlxG.keys.anyPressed([DOWN, S]);
+		var _left:Bool = FlxG.keys.anyPressed([LEFT, A]);
+		var _right:Bool = FlxG.keys.anyPressed([RIGHT, D]);
 		var _space:Bool = FlxG.keys.anyPressed([SPACE]);
 		// Procesar direcciones opuestas
 		if (_up && _down)
@@ -32,8 +32,10 @@ class Jugador extends IA {
 		// saltando
 		if (FlxG.keys.anyJustPressed([SPACE]))
 			entidad.cargarSalto();
-		if (FlxG.keys.anyJustReleased([SPACE])) {
+		if (FlxG.keys.anyJustReleased([SPACE]))
 			entidad.saltar();
-		}
+		// ataque
+		if (FlxG.keys.anyJustPressed([SHIFT]))
+			entidad.ataque();
 	}
 }

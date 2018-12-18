@@ -10,7 +10,7 @@ import flixel.system.FlxSound;
  *
 **/
 class Collectible extends FlxSprite {
-	public var speed:Float = 200;
+	public var speed:Float = 600;
 	public var name:String;
 	public var collectedSounds:Array<FlxSound>;
 
@@ -25,7 +25,7 @@ class Collectible extends FlxSprite {
 		var mA:Float = random.float(0, 360);
 		var mov:FlxPoint = new FlxPoint(speed * 2, 0);
 		mov.rotate(new FlxPoint(), mA);
-		acceleration.addPoint(mov);
+		velocity.addPoint(mov);
 	}
 
 	public function collected():FlxSound {
