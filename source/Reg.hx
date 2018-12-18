@@ -45,4 +45,6 @@ class Reg {
 	 * Especially useful for setting up multiple save slots.
 	 */
 	public static var saves:Array<FlxSave> = [];
+	// game
+	// public static var tilemap:TiledLevel;
 }

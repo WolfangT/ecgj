@@ -21,7 +21,7 @@ class EnemigoBasico extends IA {
 		_mA = _dir.degrees;
 		_mD = _dir.length;
 		// modificar valores de la entidad
-		if (entidad.cargandoSalto && entidad.cargaSalto == 1)
+		if (entidad.cargandoSalto && entidad.cargaSalto == 0.5)
 			entidad.saltar();
 		else if (_mD < 250) {
 			if (_mA <= 45 || _mA >= 135)

@@ -21,6 +21,7 @@ import flixel.math.FlxPoint;
 import flixel.graphics.frames.FlxTileFrames;
 import entities.Entity;
 import entities.Santa;
+import ias.Jugador;
 import entities.ImpRojo;
 import collectibles.Collectible;
 import collectibles.Gift;
@@ -47,7 +48,10 @@ class TiledLevel extends TiledMap {
 	public var mobileObjects:FlxGroup;
 	public var staticObjects:FlxGroup;
 	public var collectiblesObjects:FlxGroup;
+	// group  utiliy group
 	public var entityLayer:FlxGroup;
+	public var enemyGroup:FlxGroup;
+	public var proyectileGroup:FlxGroup;
 	// Sprites of images layers
 	public var imagesLayer:FlxGroup;
 	// constantes fisicas
@@ -55,6 +59,7 @@ class TiledLevel extends TiledMap {
 	public var friction:Float = 0.5;
 	public var song:String = null;
 
+	// game
 	public function new(tiledLevel:Dynamic) {
 		super(tiledLevel);
 		masterGroup = new FlxGroup();
@@ -64,6 +69,8 @@ class TiledLevel extends TiledMap {
 		entityLayer = new FlxGroup();
 		mobileObjects = new FlxGroup();
 		staticObjects = new FlxGroup();
+		enemyGroup = new FlxGroup();
+		proyectileGroup = new FlxGroup();
 		frontLayer = new FlxGroup();
 		backgroundLayer = new FlxGroup();
 		collectiblesObjects = new FlxGroup();
@@ -248,9 +255,11 @@ class TiledLevel extends TiledMap {
 			y -= g.map.getGidOwner(object.gid).tileHeight;
 		// determinar tipo de objeto
 		if (object.type == "player") {
-			Reg.player.name = object.name;
-			Reg.player.setPosition(x, y);
+			// crear jugador
+			Reg.player = new ImpRojo(object.name, x, y);
+			Reg.player.ia = new Jugador(Reg.player);
 			sprite = Reg.player;
+			FlxG.debugger.track(sprite);
 		} else {
 			// resolver dinamicamente la clase del sprite
 			var clase:Dynamic = null;
@@ -261,6 +270,8 @@ class TiledLevel extends TiledMap {
 			if (clase == null)
 				throw "Could not find class of type " + object.type;
 			sprite = Type.createInstance(clase, [object.name, object.x, object.y]);
+			if (g.name == "entities")
+				enemyGroup.add(sprite);
 		}
 
 		// Determinar si el objeto es movil o estatico
@@ -294,18 +305,36 @@ class TiledLevel extends TiledMap {
 			var object:FlxObject = cast object;
 			collideWithLevel(object);
 		}
+		FlxG.overlap(Reg.player, enemyGroup, hurtPlayer);
+		FlxG.overlap(enemyGroup, proyectileGroup, proyectileEntity);
 		FlxG.overlap(entityLayer, collectiblesObjects, collectObject);
 		FlxG.collide(mobileObjects, mobileObjects);
 		FlxG.collide(staticObjects, mobileObjects);
+	}
+
+	public function hurtPlayer(pla:FlxObject, ene:FlxObject):Void {
+		var enemy:Entity = cast ene;
+		var player:Entity = cast pla;
+		enemy.mareado += 5;
+		enemy.gifts += 1;
+		player.sufrir();
+	}
+
+	public function proyectileEntity(ent:FlxObject, pro:FlxObject):Void {
+		var entity:Entity = cast ent;
+		if (entity.activo) {
+			entity.mareado += 1;
+		}
 	}
 
 	public function collectObject(ent:FlxObject, coll:FlxObject):Void {
 		var entity:Entity = cast ent;
 		var collectible:Collectible = cast coll;
 		if (entity.activo) {
-			entity.gifts += 1;
+			entity.collectCollectible(collectible);
 			var sound:FlxSound = collectible.collected();
-			sound.play();
+			if (sound != null)
+				sound.play();
 		}
 	}
 

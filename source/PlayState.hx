@@ -27,7 +27,7 @@ class PlayState extends FlxState {
 		add(level.masterGroup);
 		bgColor = level.backgroundColor;
 		if (level.song != null)
-			FlxG.sound.playMusic(FlxAssets.getSound("assets/music/" + level.song), 0.1, true);
+			FlxG.sound.playMusic(FlxAssets.getSound("assets/music/" + level.song), 1, true);
 		// load hud
 		hud = new HUD();
 		add(hud);
@@ -45,7 +45,7 @@ class PlayState extends FlxState {
 	 */
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
-		hud.updateHUD(Reg.player.gifts);
+		hud.updateHUD(Reg.player.gifts, Reg.player.balls);
 		hud.update(elapsed);
 		level.applyGravity();
 		level.collideObjects();
