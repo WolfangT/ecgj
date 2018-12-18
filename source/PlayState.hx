@@ -49,7 +49,7 @@ class PlayState extends FlxState {
 		hud.update(elapsed);
 		level.applyGravity();
 		level.collideObjects();
-		if (Reg.player.y > level.fullHeight)
+		if (Reg.player.y > level.fullHeight || Reg.player.gifts == 0)
 			FlxG.resetState();
 	}
 
