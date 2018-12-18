@@ -315,7 +315,7 @@ class TiledLevel extends TiledMap {
 	public function hurtPlayer(pla:FlxObject, ene:FlxObject):Void {
 		var enemy:Entity = cast ene;
 		var player:Entity = cast pla;
-		enemy.mareado += 5;
+		enemy.mareado += 2;
 		enemy.gifts += 1;
 		player.sufrir();
 	}
