@@ -248,7 +248,7 @@
     <property name="static" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="80" type="Gift" gid="87" x="6621.33" y="454" width="32" height="32">
+  <object id="80" type="Gift" gid="87" x="6622.33" y="454" width="32" height="32">
    <properties>
     <property name="static" type="bool" value="true"/>
    </properties>
