@@ -48,7 +48,7 @@
    <text wrap="1" color="#ffffff">You can wall jump from white walls</text>
   </object>
   <object id="97" name="Congratulations, now Santa's secret gift cache is all your!!!" type="Text" x="6666.83" y="485.833" width="275.333" height="45.3333">
-   <text wrap="1" color="#ffffff" halign="center">Congratulations, now Santa's secret gift cache is all your!!!</text>
+   <text wrap="1" color="#ffffff" halign="center">Congratulations, now Santa's secret gift cache is all yours!!!</text>
   </object>
  </objectgroup>
  <objectgroup id="7" name="collectibles">

@@ -16,6 +16,9 @@ class Credits extends FlxState {
 	private var _btnPlay:FlxButton;
 	private var _name:FlxText;
 	private var _bg:FlxSprite;
+	private var _textCredits1:FlxText;
+	private var _textCredits2:FlxText;
+	private var _textCredits3:FlxText;
 
 	/**
 	 * Function that is called up when to state is created to set it up.
@@ -27,10 +30,17 @@ class Credits extends FlxState {
 		FlxG.debugger.drawDebug = true;
 		// Custom
 		_bg = new FlxSprite(0, 0, AssetPaths.main__png);
-		_name = new FlxText(FlxG.width * 0.15, FlxG.height * 0.33, FlxG.width * 0.7, "Credits", 50); // "The great Nort Pole holiday bulglary of 82!"
 		_btnPlay = new FlxButton(FlxG.width * 0.5, FlxG.height * 0.9, "Return", clickPlay);
+		_name = new FlxText(FlxG.width * 0.4, FlxG.height * 0.10, 0, "Credits", 50); // "The great Nort Pole holiday bulglary of 82!"
+		_textCredits1 = new FlxText(FlxG.width * 0.10, FlxG.height * 0.35, 0, "Developed by Wolfang Torres and Eduardo Rivero", 20);
+		_textCredits2 = new FlxText(FlxG.width * 0.10, FlxG.height * 0.45, 0, "Original art by https://opengameart.org/content/a-puzzling-present-image-bank",
+			12);
+		_textCredits3 = new FlxText(FlxG.width * 0.10, FlxG.height * 0.50, 0, "Sounds Efects created with http://sfbgames.com/chiptone/", 15);
 		add(_bg);
 		add(_name);
+		add(_textCredits1);
+		add(_textCredits2);
+		add(_textCredits3);
 		add(_btnPlay);
 		// Estadar
 		super.create();
